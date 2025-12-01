@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: book-rec
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: bookrec
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
