@@ -7,6 +7,7 @@ import subprocess
 class Kaggle():
     def __init__(self):
         self._set_kaggle_env()
+        self.kaggle_df = None
 
     def _set_kaggle_env(self):
         with open("kaggle.json") as f:
@@ -24,6 +25,7 @@ class Kaggle():
                 zip_ref.extractall("/tmp/bx")
 
             df = pd.read_csv("/tmp/bx/data.csv", sep=";", encoding='latin-1', on_bad_lines="skip")
+            self.kaggle_df = df
             return df
         except Exception as e:
             print(f"Error occurred: {e}")
@@ -32,11 +34,9 @@ class Kaggle():
 
 if __name__ == "__main__":
     kaggle = Kaggle()
-    kaggle._set_kaggle_env()
     res = kaggle.get_data_from_kaggle()
 
     if res is not None:
         print("Successfull!\n")
-        print(res)
     else:
         print("Failed.")
