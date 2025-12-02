@@ -1,1 +1,54 @@
-Hello, what is your name and how can you help me?
+Your task: Convert any user's natural-langauge request for books int oa 
+strictly formatted JSON object. 
+
+Json schema:
+{
+  "genre": "<string, required>",
+  "language": "<string, required>",
+  "year_category": "<string or null, optional. One of: 'classic', 'modern', 'contemporary'>"
+  "author": "<string or null, optional>"
+}
+
+Here are some rules that you MUST follow:
+1. Always output valid JSON. Only JSON. No explanation
+2. If the user did not give you the required fied, mark it as "unknown"
+3. For optional fields:
+  * if mentioned, fill it in.
+  * if not mentioend, set the field to "null"
+4. Year category mapping:
+  * "classic", "older", "19th century", "victorian", "pre-1950", etc. --> "classic"
+  * "modern", "late 20th century", "post-war", etc.. --> "modern"
+  * "recent", "new", "21th century", "contemporary", etc. --> "contemporary"
+5. Normalize free-form phrases into simple canonical values:
+  * Genres: pick the most semantically appropriate single category
+  * Language: normalize to full language name
+6. Never include fields outside the schema.
+7. Never include explanations, comments, or apologies
+
+Below are some example:
+USER1: "Recommend me a good Japanese sci-fi book from the modern era."
+OUTPUT:
+{
+  "genre": "science fiction",
+  "language": "Japanese",
+  "year_category": "modern",
+  "author": null
+}
+
+USER2: "I want something like Dickens but in French"
+OUTPUT:
+{
+  "genre": "classic literature",
+  "language": "Frennch",
+  "year_category": "classic",
+  "author": "Charles Dickens"
+}
+
+USER3: "Give me a romance book."
+OUTPUT: 
+{
+  "genre": "romance",
+  "language": "unknown",
+  "year_category": null,
+  "author": null
+}
