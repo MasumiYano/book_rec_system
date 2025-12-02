@@ -24,7 +24,7 @@ class Kaggle():
             with zipfile.ZipFile("/tmp/bx/books-dataset.zip", "r") as zip_ref:
                 zip_ref.extractall("/tmp/bx")
 
-            df = pd.read_csv("/tmp/bx/data.csv", sep=";", encoding='latin-1', on_bad_lines="skip")
+            df = pd.read_csv("/tmp/bx/data.csv", sep=",", encoding='latin-1', on_bad_lines="skip", engine="python", quotechar='"')
             self.kaggle_df = df
             return df
         except Exception as e:
