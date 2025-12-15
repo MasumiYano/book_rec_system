@@ -8,7 +8,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 kaggle = Kaggle()
 kaggle_df = kaggle.get_data_from_kaggle()
-print(f"Here's the result: {kaggle_df}")
+# print(f"Here's the result: {kaggle_df}")
 
 
 file_path = "/mnt/data/nict/masumiy1/book_rec_system"
